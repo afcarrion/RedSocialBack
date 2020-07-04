@@ -8,6 +8,7 @@ const router = express.Router();
 router.post('/login', function(req, res){
     controller.login(req.body.username, req.body.password)
         .then(token => {
+            console.log(token);
             response.success(req, res, token, 200);
         })
         .catch(error => {
