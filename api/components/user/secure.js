@@ -9,9 +9,13 @@ module.exports = function checkAuth(action){
                 auth.check.own(req, owner);
                 next();
                 break;
-            
-                default:
-                    next();
+            case 'follow':
+                auth.check.logged(req);
+                next();
+                break;
+
+            default:
+                next();
         }
     }
 

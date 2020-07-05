@@ -40,9 +40,26 @@ module.exports = function (injectedStore) {
         return store.upsert(TABLA, user);
     }
 
+    function follow(from, to){
+        return store.upsert(TABLA + '_follow', {
+            user_from: from,
+            user_to: to,
+        });
+    }
+
+    function following(id) {
+        const join = {};
+        join[TABLA] = 'user_to';
+        const query = {user_from:id};
+
+        return store.query(TABLA + '_follow', query, join);
+    }
+
     return {
         list,
         get,
         upsert,
+        follow,
+        following,
     };
 }

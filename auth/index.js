@@ -20,6 +20,10 @@ const check = {
             throw error('No puedes hacer esto', 401);
            //throw new Error('No puedes hacer esto');
         }
+    },
+    logged: function(req){
+        const decoded = decodeHeader(req);
+        
     }
 }
 
